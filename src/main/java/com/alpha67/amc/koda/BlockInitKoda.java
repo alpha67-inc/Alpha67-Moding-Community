@@ -36,6 +36,6 @@ public class BlockInitKoda {
 
     private static <T extends Block> void registerBlockItem(String name, RegistryObject<T> block) {
         ItemInitKoda.ITEMS.register(name, () -> new BlockItem(block.get(),
-                new Item.Properties().tab(AlphatabItemGroup.tab)));
+                new Item.Properties().group(AlphatabItemGroup.tab)));
     }
 }

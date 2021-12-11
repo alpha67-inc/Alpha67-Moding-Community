@@ -10,7 +10,7 @@ import java.util.function.Supplier;
 
 
 public enum AmcItemTier implements IItemTier {
-    ALPHARIUM(1, 3000, 12.0F, 5.0F, 20, () -> Ingredient.of(ItemInitVultorio.alpharium_ingot.get()));
+    ALPHARIUM(1, 3000, 12.0F, 5.0F, 20, () -> Ingredient.fromItems(ItemInitVultorio.alpharium_ingot.get()));
 
     /*   WOOD(0, 59, 2.0F, 0.0F, 15, () -> {
       return Ingredient.of(ItemTags.PLANKS);
@@ -49,38 +49,34 @@ public enum AmcItemTier implements IItemTier {
     }
 
 
-    public Ingredient getRepairMaterial() {
-        return this.repairmaterial.get();
-    }
-
     @Override
-    public int getUses() {
+    public int getMaxUses() {
         return maxUses;
     }
 
     @Override
-    public float getSpeed() {
+    public float getEfficiency() {
         return speed;
     }
 
     @Override
-    public float getAttackDamageBonus() {
+    public float getAttackDamage() {
         return attackDamage;
     }
 
     @Override
-    public int getLevel() {
+    public int getHarvestLevel() {
         return harvestLevel;
     }
 
     @Override
-    public int getEnchantmentValue() {
+    public int getEnchantability() {
         return enchantability;
     }
 
-    @Override
-    public Ingredient getRepairIngredient() {
-        return repairmaterial.get();
+    public Ingredient getRepairMaterial() {
+        return this.repairmaterial.get();
     }
+
 }
 

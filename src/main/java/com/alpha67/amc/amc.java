@@ -78,8 +78,8 @@ public class amc {
 
     private void updateTitle(){
         String Name = "Alpha67";
-        final MainWindow window = Minecraft.getInstance().getWindow();
-        window.setTitle(Name);
+        final MainWindow window = Minecraft.getInstance().getMainWindow();
+        window.setWindowTitle(Name);
 
 
     }
