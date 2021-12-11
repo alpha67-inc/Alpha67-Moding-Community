@@ -7,8 +7,8 @@ import net.minecraft.item.crafting.Ingredient;
 import java.util.function.Supplier;
 
 
-public enum AmcItemTier implements IItemTier {
-    ALPHARIUM(1, 3000, 12.0F, 5.0F, 20, () -> Ingredient.fromItems(ItemInitVultorio.alpharium_ingot.get()));
+public enum AmcRubytier implements IItemTier {
+    RUBY(1, 1000, 15.0F, 2.0F, 20, () -> Ingredient.fromItems(ItemInitVultorio.ruby_nugets.get()));
 
     /*   WOOD(0, 59, 2.0F, 0.0F, 15, () -> {
       return Ingredient.of(ItemTags.PLANKS);
@@ -37,7 +37,7 @@ public enum AmcItemTier implements IItemTier {
     private final int harvestLevel;
 
 
-    AmcItemTier(int harvestLevel, int maxUses, float speed, float attackDamage, int enchantability, Supplier<Ingredient> repairmaterial) {
+    AmcRubytier(int harvestLevel, int maxUses, float speed, float attackDamage, int enchantability, Supplier<Ingredient> repairmaterial) {
         this.harvestLevel = harvestLevel;
         this.maxUses = maxUses;
         this.speed = speed;
