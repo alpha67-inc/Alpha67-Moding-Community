@@ -21,30 +21,19 @@ import net.minecraftforge.common.world.BiomeGenerationSettingsBuilder;
 import net.minecraftforge.event.world.BiomeLoadingEvent;
 import net.minecraftforge.registries.ForgeRegistries;
 
-public class AlphaOreGen {/*
+public class AlphaOreGen {
     public static void generateOres(final BiomeLoadingEvent event) {
-        for (OreType ore : OreType.get()) {
-            OreFeatureConfig oreFeatureConfig = new OreFeatureConfig(
-                    OreFeatureConfig.FillerBlockType.NATURAL_STONE,
-                    ore.getBlock().get().defaultBlockState(), ore.getMaxVeinSize());
-
-            // bottomOffset -> minimum height for the ore
-            // maximum -> minHeight + maximum = top level (the vertical expansion of the ore, it grows x levels from bottomOffset)
-            // topOffset -> subtracted from the maximum to give actual top level
-            // ore effectively exists from bottomOffset to (bottomOffset + maximum - topOffset)
-            ConfiguredPlacement<TopSolidRangeConfig> configuredPlacement = Placement.RANGE.configure(
-                    new TopSolidRangeConfig(ore.getMinHeight(), ore.getMinHeight(), ore.getMaxHeight()));
-
-            ConfiguredFeature<?, ?> oreFeature = registerOreFeature(ore, oreFeatureConfig, configuredPlacement);
-
-            event.getGeneration().addFeature(GenerationStage.Decoration.UNDERGROUND_ORES, oreFeature);
+        if (!(event.getCategory().equals(Biome.Category.NETHER) || event.getCategory().equals(Biome.Category.THEEND))) {
+            generateOre(event.getGeneration(), OreFeatureConfig.FillerBlockType.BASE_STONE_OVERWORLD,
+                    BlockInitVultorio.alphariumore.get().getDefaultState(), 5, 15, 30, 10);
         }
     }
 
-    private static ConfiguredFeature<?, ?> registerOreFeature(OreType ore, OreFeatureConfig oreFeatureConfig,
-                                                              ConfiguredPlacement configuredPlacement) {
-        return Registry.register(WorldGenRegistries.CONFIGURED_FEATURE, ore.getBlock().get().getRegistryName(),
-                Feature.ORE.configured(oreFeatureConfig).place(configuredPlacement)
-                        .square().count(ore.getMaxVeinSize()));
-    }*/
+    private static void generateOre(BiomeGenerationSettingsBuilder settings, RuleTest fillerType, BlockState state,
+                                    int veinSize, int minHeight, int maxHeight, int amount) {
+        settings.withFeature(GenerationStage.Decoration.UNDERGROUND_ORES,
+                Feature.ORE.withConfiguration(new OreFeatureConfig(fillerType, state, veinSize))
+                        .withPlacement(Placement.RANGE.configure(new TopSolidRangeConfig(minHeight, 0, maxHeight)))
+                        .square().chance(amount));
+    }
 }
