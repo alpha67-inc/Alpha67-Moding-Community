@@ -6,8 +6,10 @@ import net.minecraft.block.Block;
 import net.minecraft.item.crafting.Ingredient;
 import net.minecraftforge.common.util.Lazy;
 
-public class OreType {
-    ALPHARIUMORE(() -> Lazy.of(BlockInitVultorio.alphariteore),8,25, 50)
+import static com.alpha67.amc.vultorio.init.BlockInitVultorio.*;
+
+public class OreType {/*
+    ALPHARIUMORE(() -> Lazy.of(alpharium_ore),8,25, 50)
 
     private final Lazy<Block> block;
     private final int maxVeinSize;
@@ -44,5 +46,5 @@ public class OreType {
             }
         }
         return null;
-    }
+    }*/
 }

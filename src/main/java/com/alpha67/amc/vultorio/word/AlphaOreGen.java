@@ -21,7 +21,7 @@ import net.minecraftforge.common.world.BiomeGenerationSettingsBuilder;
 import net.minecraftforge.event.world.BiomeLoadingEvent;
 import net.minecraftforge.registries.ForgeRegistries;
 
-public class AlphaOreGen {
+public class AlphaOreGen {/*
     public static void generateOres(final BiomeLoadingEvent event) {
         for (OreType ore : OreType.get()) {
             OreFeatureConfig oreFeatureConfig = new OreFeatureConfig(
@@ -46,5 +46,5 @@ public class AlphaOreGen {
         return Registry.register(WorldGenRegistries.CONFIGURED_FEATURE, ore.getBlock().get().getRegistryName(),
                 Feature.ORE.configured(oreFeatureConfig).place(configuredPlacement)
                         .square().count(ore.getMaxVeinSize()));
-    }
+    }*/
 }

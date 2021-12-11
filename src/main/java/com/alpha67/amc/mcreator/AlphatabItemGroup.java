@@ -22,7 +22,7 @@ public class AlphatabItemGroup extends AmcModElements.ModElement {
 			@OnlyIn(Dist.CLIENT)
 
 			@Override
-			public ItemStack makeIcon() {
+			public ItemStack createIcon() {
 				return ItemInitVultorio.alpharium_ingot.get().getDefaultInstance();
 			}
 
