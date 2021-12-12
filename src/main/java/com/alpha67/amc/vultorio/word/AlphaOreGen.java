@@ -23,11 +23,24 @@ import net.minecraftforge.registries.ForgeRegistries;
 
 public class AlphaOreGen {
     public static void generateOres(final BiomeLoadingEvent event) {
+
         if (!(event.getCategory().equals(Biome.Category.NETHER) || event.getCategory().equals(Biome.Category.THEEND))) {
             generateOre(event.getGeneration(), OreFeatureConfig.FillerBlockType.BASE_STONE_OVERWORLD,
-                    BlockInitVultorio.alphariumore.get().getDefaultState(), 5, 15, 30, 10);
+                    BlockInitVultorio.alphariumore.get().getDefaultState(), 2, 0, 16, 1);
+        }
+
+        if ((event.getCategory().equals(Biome.Category.NETHER))) {
+            generateOre(event.getGeneration(), OreFeatureConfig.FillerBlockType.BASE_STONE_NETHER,
+                    BlockInitVultorio.rubyorenether.get().getDefaultState(), 1, 0, 45, 30);
+        }
+
+        if (!(event.getCategory().equals(Biome.Category.NETHER) || event.getCategory().equals(Biome.Category.THEEND))) {
+            generateOre(event.getGeneration(), OreFeatureConfig.FillerBlockType.BASE_STONE_OVERWORLD,
+                    BlockInitVultorio.rubyore.get().getDefaultState(), 32, 0, 32, 32);
         }
     }
+
+
 
     private static void generateOre(BiomeGenerationSettingsBuilder settings, RuleTest fillerType, BlockState state,
                                     int veinSize, int minHeight, int maxHeight, int amount) {

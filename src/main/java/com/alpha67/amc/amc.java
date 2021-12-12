@@ -6,9 +6,7 @@ import com.alpha67.amc.koda.ItemInitKoda;
 import com.alpha67.amc.vultorio.init.BlockInitVultorio;
 import com.alpha67.amc.vultorio.init.ItemInitVultorio;
 import com.alpha67.amc.vultorio.word.AlphaOreGen;
-import com.alpha67.amc.vultorio.word.OreGeneration;
 import net.minecraft.block.Block;
-import net.minecraft.block.Blocks;
 import net.minecraft.client.MainWindow;
 import net.minecraft.client.Minecraft;
 import net.minecraft.enchantment.Enchantment;
@@ -59,8 +57,12 @@ public class amc {
         //décracation class de vultorio
         ItemInitVultorio.register(eventBus);
         BlockInitVultorio.register(eventBus);
+
+        //génération de minerai
         MinecraftForge.EVENT_BUS.register(this);
-        MinecraftForge.EVENT_BUS.addListener(EventPriority.HIGH, OreGeneration::generateOres);
+        MinecraftForge.EVENT_BUS.addListener(EventPriority.HIGH, AlphaOreGen::generateOres);
+
+
 
         //déclaration class de koda
         ItemInitKoda.register(eventBus);
