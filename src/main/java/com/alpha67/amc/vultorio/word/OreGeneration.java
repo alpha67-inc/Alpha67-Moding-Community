@@ -21,6 +21,16 @@ public class OreGeneration {
 			generateOre(event.getGeneration(), OreFeatureConfig.FillerBlockType.BASE_STONE_OVERWORLD,
 					BlockInitVultorio.alphariumore.get().getDefaultState(), 5, 15, 30, 10);
 		}
+
+		if (!(event.getCategory().equals(Biome.Category.NETHER) || event.getCategory().equals(Biome.Category.THEEND))) {
+			generateOre(event.getGeneration(), OreFeatureConfig.FillerBlockType.BASE_STONE_OVERWORLD,
+					BlockInitVultorio.rubyore.get().getDefaultState(), 32, 2, 100, 10);
+		}
+
+		if ((event.getCategory().equals(Biome.Category.NETHER))) {
+			generateOre(event.getGeneration(), OreFeatureConfig.FillerBlockType.BASE_STONE_OVERWORLD,
+					BlockInitVultorio.ruby_ore_nether.get().getDefaultState(), 5, 2, 30, 10);
+		}
 	}
 
 	private static void generateOre(BiomeGenerationSettingsBuilder settings, RuleTest fillerType, BlockState state,

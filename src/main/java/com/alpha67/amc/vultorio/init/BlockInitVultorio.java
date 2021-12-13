@@ -25,6 +25,10 @@ public class BlockInitVultorio {
             () -> new Block(AbstractBlock.Properties.create(Material.ROCK)));
     public static final RegistryObject<Block> tests = registerBlock("tests",
             () -> new Block(AbstractBlock.Properties.create(Material.ROCK)));
+    public static final RegistryObject<Block> ruby_ore_nether = registerBlock("ruby_ore_nether",
+            () -> new Block(AbstractBlock.Properties.create(Material.ROCK)));
+    public static final RegistryObject<Block> rubyore = registerBlock("rubyore",
+            () -> new Block(AbstractBlock.Properties.create(Material.ROCK)));
 
     public static void register(IEventBus eventBus) {
         BLOCKS.register(eventBus);
