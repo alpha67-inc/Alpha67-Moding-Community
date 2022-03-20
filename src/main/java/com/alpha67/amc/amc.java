@@ -6,6 +6,8 @@ import com.alpha67.amc.koda.ItemInitKoda;
 import com.alpha67.amc.vultorio.init.BlockInitVultorio;
 import com.alpha67.amc.vultorio.init.ItemInitVultorio;
 import com.alpha67.amc.vultorio.word.OreGeneration;
+import mezz.jei.api.IModPlugin;
+import mezz.jei.api.recipe.vanilla.IJeiBrewingRecipe;
 import net.minecraft.block.Block;
 import net.minecraft.client.MainWindow;
 import net.minecraft.client.Minecraft;
@@ -39,30 +41,25 @@ public class amc {
     private static final String PROTOCOL_VERSION = "1";
     public static final SimpleChannel PACKET_HANDLER = NetworkRegistry.newSimpleChannel(new ResourceLocation("amc", "amc"), () -> PROTOCOL_VERSION,
             PROTOCOL_VERSION::equals, PROTOCOL_VERSION::equals);
-    public AmcModElements elements;
+
     public amc() {
         IEventBus bus = FMLJavaModLoadingContext.get().getModEventBus();
         bus.addListener(this::setup);
-        elements = new AmcModElements();
-        FMLJavaModLoadingContext.get().getModEventBus().register(this);
-        FMLJavaModLoadingContext.get().getModEventBus().addListener(this::init);
-        FMLJavaModLoadingContext.get().getModEventBus().addListener(this::clientLoad);
-        MinecraftForge.EVENT_BUS.register(new AmcModFMLBusEvents(this));
 
         FMLJavaModLoadingContext.get().getModEventBus().addListener(this::setup);
         FMLJavaModLoadingContext.get().getModEventBus().addListener(this::clientSetup);
         FMLJavaModLoadingContext.get().getModEventBus().register(this);
-        IEventBus eventBus = FMLJavaModLoadingContext.get().getModEventBus();
+        //IEventBus eventBus = FMLJavaModLoadingContext.get().getModEventBus();
 
         //décracation class de vultorio
-        ItemInitVultorio.register(eventBus);
-        BlockInitVultorio.register(eventBus);
-        MinecraftForge.EVENT_BUS.register(this);
-        MinecraftForge.EVENT_BUS.addListener(EventPriority.HIGH, OreGeneration::generateOres);
+        //ItemInitVultorio.register(eventBus);
+        //BlockInitVultorio.register(eventBus);
+        //MinecraftForge.EVENT_BUS.register(this);
+        //MinecraftForge.EVENT_BUS.addListener(EventPriority.HIGH, OreGeneration::generateOres);
 
         //déclaration class de koda
-        ItemInitKoda.register(eventBus);
-        BlockInitKoda.register(eventBus);
+        //ItemInitKoda.register(eventBus);
+        //BlockInitKoda.register(eventBus);
     }
 
 
@@ -90,54 +87,6 @@ public class amc {
 
     }
 
-
-
-
-
-    //pour mcreator
-    private void init(FMLCommonSetupEvent event) {
-        elements.getElements().forEach(element -> element.init(event));
-    }
-
-    public void clientLoad(FMLClientSetupEvent event) {
-        elements.getElements().forEach(element -> element.clientLoad(event));
-    }
-
-    @SubscribeEvent
-    public void registerBlocks(RegistryEvent.Register<Block> event) {
-        event.getRegistry().registerAll(elements.getBlocks().stream().map(Supplier::get).toArray(Block[]::new));
-    }
-
-    @SubscribeEvent
-    public void registerItems(RegistryEvent.Register<Item> event) {
-        event.getRegistry().registerAll(elements.getItems().stream().map(Supplier::get).toArray(Item[]::new));
-    }
-
-    @SubscribeEvent
-    public void registerEntities(RegistryEvent.Register<EntityType<?>> event) {
-        event.getRegistry().registerAll(elements.getEntities().stream().map(Supplier::get).toArray(EntityType[]::new));
-    }
-
-    @SubscribeEvent
-    public void registerEnchantments(RegistryEvent.Register<Enchantment> event) {
-        event.getRegistry().registerAll(elements.getEnchantments().stream().map(Supplier::get).toArray(Enchantment[]::new));
-    }
-
-    @SubscribeEvent
-    public void registerSounds(RegistryEvent.Register<net.minecraft.util.SoundEvent> event) {
-        elements.registerSounds(event);
-    }
-    private static class AmcModFMLBusEvents {
-        private final amc parent;
-        AmcModFMLBusEvents(amc parent) {
-            this.parent = parent;
-        }
-
-        @SubscribeEvent
-        public void serverLoad(FMLServerStartingEvent event) {
-            this.parent.elements.getElements().forEach(element -> element.serverLoad(event));
-        }
-    }
 
 
     }

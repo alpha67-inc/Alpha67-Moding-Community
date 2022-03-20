@@ -72,7 +72,7 @@ minecraft {
             property 'forge.logging.console.level', 'debug'
 
             mods {
-                tutorialmod {
+                alphaMod {
                     source sourceSets.main
                 }
             }
@@ -94,7 +94,7 @@ minecraft {
             property 'forge.logging.console.level', 'debug'
 
             mods {
-                tutorialmod {
+                alphamod {
                     source sourceSets.main
                 }
             }
@@ -141,9 +141,6 @@ dependencies {
     // at runtime, use the full JEI jar
     runtimeOnly fg.deobf("mezz.jei:jei-1.16.5:7.7.1.121")
 
-    runtimeOnly fg.deobf("top.theillusivec4.curios:curios-forge:1.16.5-4.0.5.2")
-    compileOnly fg.deobf("top.theillusivec4.curios:curios-forge:1.16.5-4.0.5.2:api")
-
     // You may put jars on which you depend on in ./libs or you may define them like so..
     // compile "some.group:artifact:version:classifier"
     // compile "some.group:artifact:version"
@@ -168,7 +165,7 @@ dependencies {
 jar {
     manifest {
         attributes([
-            "Specification-Title": "tutorialmod",
+            "Specification-Title": "alphamod",
             "Specification-Vendor": "tutorialmodsareus",
             "Specification-Version": "1", // We are version 1 of ourselves
             "Implementation-Title": project.name,
